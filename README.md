@@ -43,7 +43,7 @@ Service availability can be checked at any time with `/status`.
 
 ### Prerequisites
 
-- JDK 25
+- JDK 21
 - A Discord bot token ([Discord Developer Portal](https://discord.com/developers/applications))
 - A Cloudflare Worker
 - A Cloudflare R2 Bucket

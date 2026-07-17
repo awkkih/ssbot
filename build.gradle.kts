@@ -1,6 +1,9 @@
 plugins {
     kotlin("jvm") version "2.4.0"
     kotlin("plugin.serialization") version "2.4.0"
+
+    id("com.gradleup.shadow") version "9.6.0"
+    application
 }
 
 group = "dev.akkih"
@@ -28,9 +31,25 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(25)
+    jvmToolchain(21)
 }
 
-tasks.test {
-    useJUnitPlatform()
+application {
+    mainClass.set("dev.akkih.ssbot.SkinSpriteBotKt")
+}
+
+tasks {
+    build {
+        dependsOn(shadowJar)
+    }
+
+    shadowJar {
+        archiveBaseName.set("ssbot")
+        archiveClassifier.set("")
+        archiveVersion.set("")
+    }
+
+    register("stage") {
+        dependsOn(shadowJar)
+    }
 }
