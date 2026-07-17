@@ -15,6 +15,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import org.slf4j.Logger
@@ -26,12 +27,17 @@ object Bot {
 
     val client: JDA = default(config.DISCORD_TOKEN)
     val log = LoggerFactory.getLogger(this::class.java) as Logger
+    val json = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
+        prettyPrint = true
+    }
 
     private val customizationOptions: List<OptionData>
 
     private val httpClient = HttpClient(CIO) {
         install(ContentNegotiation) {
-            json()
+            json(json)
         }
 
         install(HttpTimeout) {
