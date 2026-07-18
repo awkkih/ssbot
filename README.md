@@ -1,5 +1,7 @@
 # Skin Sprite Bot
 
+### [Click here to add the bot to your server!](https://discord.com/oauth2/authorize?client_id=1527452698839093308)
+
 A Discord bot that turns Minecraft skins into rendered character sprites.
 
 Upload a skin file or give a Minecraft username, and the bot fetches the skin, validates it, and returns a rendered avatar sprite.
